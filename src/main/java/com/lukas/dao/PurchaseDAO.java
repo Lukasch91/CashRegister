@@ -18,7 +18,7 @@ public class PurchaseDAO {
         this.connection = connection;
     }
 
-    public void addPurchaseToDatabase(Purchase purchase) {
+    public void addPurchaseToDatabase(com.lukas.model.entities.Purchase purchase) {
         PreparedStatement stmt = null;
         try {
 

@@ -1,6 +1,7 @@
 package com.lukas.dao;
 
 import com.lukas.db.ConnectionFactory;
+import com.lukas.db.EMFactory;
 
 import java.sql.Connection;
 
@@ -21,11 +22,24 @@ public class DAOFactory {
         return new PurchaseDAO(connection);
     }
 
+    public  static  PurchaseDAOJpa getPurchaseDAOJpa (){
+        return new PurchaseDAOJpa(EMFactory.getInstance().getEM());
+    }
+
+//    public  static  RecordsDAOJpa getRecordsDAOJpa (){
+//        return new RecordsDAOJpa(EMFactory.getInstance().getEM());
+//    }
+
     public static RecordsDAO getRecordsDAO() {
         return new RecordsDAO(ConnectionFactory.getConnection());
     }
 
     public static RecordsDAO getRecordsDAO(Connection connection) {
         return new RecordsDAO(connection);
+    }
+
+
+    public static ItemDAOJpa getItemDAOJpa() {
+        return new ItemDAOJpa(EMFactory.getInstance().getEM());
     }
 }

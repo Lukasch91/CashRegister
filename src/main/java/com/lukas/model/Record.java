@@ -1,6 +1,7 @@
 package com.lukas.model;
 
-import com.lukas.model.item.Item;
+import com.lukas.model.entities.Item;
+
 
 public class Record {
     private Item item;
@@ -14,7 +15,7 @@ public class Record {
 
 
     public Double sumOfItem() {
-        return item.getItemPrice() * numberOfItems;
+        return item.getItemPriceWithDiscount() * numberOfItems;
     }
 
     public Item getItem() {

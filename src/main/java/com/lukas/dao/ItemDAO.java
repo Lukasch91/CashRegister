@@ -22,7 +22,7 @@ public class ItemDAO  {
 
             String sql = "select itemCode, itemName, ItemPrice, typeOfDiscount, discountAmount " +
                     "from itemsdatabase.item left outer join itemsdatabase.discount" +
-                    "on  discount.discountId = itemstable.discountId where itemCode = ?";
+                    "on  discount.Id = itemstable.discountId where itemCode = ?";
             stmt = connection.prepareStatement(sql);
             stmt.setLong(1, itemCode);
             rs = stmt.executeQuery(sql);
@@ -91,7 +91,7 @@ public class ItemDAO  {
         try {
             String sql = "select itemCode, itemName, ItemPrice, typeOfDiscount, discountAmount \n" +
                     "from item left outer join discount \n" +
-                    "on  discount.discountId = item.discountId limit ?, 1;";
+                    "on  discount.id = item.discountId limit ?, 1;";
             stmt = connection.prepareStatement(sql);
             stmt.setInt(1, randomNumber - 1);
             rs = stmt.executeQuery();

@@ -3,7 +3,6 @@ package com.lukas;
 import com.lukas.cashRegister.CashRegister;
 import com.lukas.cashRegister.ManualScanner;
 import com.lukas.cashRegister.RandomScanner;
-import com.lukas.service.PurchaseService;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -11,11 +10,9 @@ import java.util.Scanner;
 
 public class Main {
 
-    private PurchaseService PurchaseService;
     private CashRegister cashRegister;
 
-    public Main(PurchaseService PurchaseService, CashRegister cashRegister) {
-        this.PurchaseService = PurchaseService;
+    public Main(CashRegister cashRegister) {
         this.cashRegister = cashRegister;
     }
 
@@ -25,8 +22,7 @@ public class Main {
         if (args.length > 0) {
             arg = args[0];
         }
-        PurchaseService PurchaseService = new PurchaseService();
-        new Main(PurchaseService, new CashRegister(PurchaseService)).userInteraction(arg);
+        new Main(new CashRegister()).userInteraction(arg);
     }
 
     public void userInteraction(String mode) throws SQLException, ClassNotFoundException {
@@ -86,14 +82,14 @@ public class Main {
                 cashRegister.endPurchase();
             } else if (name.equals("4")) {
                 System.out.println("Withdrawal sum:");
-                PurchaseService.addWithdrawal(readInputasDouble());
+                cashRegister.addWithdrawal(readInputasDouble());
             } else if (name.equals("5")) {
-                Double balance = PurchaseService.getCurrentBalance();
+                Double balance = cashRegister.getCurrentBalance();
                 System.out.println("Current cash register balance :" + balance);
             } else if (name.equals("6")) {
                 System.out.println("Enter date:");
                 String date = readInput();
-                Double balance = PurchaseService.getBalanceByDate(date);
+                Double balance = cashRegister.getBalanceByDate(date);
                 System.out.println("Cash register balance on " + date + " was : " + balance);
             } else if (name.equals("7")) {
                 keepRunning = false;

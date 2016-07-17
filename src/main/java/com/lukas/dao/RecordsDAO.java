@@ -21,7 +21,7 @@ public class RecordsDAO {
                     " VALUES (null, ?, ?, ?, ?, ?);";
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, record.getItem().getItemName());
-            stmt.setDouble(2, record.getItem().getItemPrice().intValue());
+            stmt.setDouble(2, record.getItem().getItemPriceWithDiscount().intValue());
             stmt.setInt(3, record.getNumberOfItems());
             stmt.setDouble(4, record.sumOfItem().intValue());
             stmt.setInt(5, getMaxId());
